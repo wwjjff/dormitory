@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+<package name="student" namespace="/" extends="json-default">
+	     
+	     <interceptors>
+			<interceptor name="loginInterceptor" class="interceptor.StudentInterceptor"></interceptor>
+			<interceptor-stack name="StudentInterceptor_stack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="loginInterceptor"></interceptor-ref>
+			</interceptor-stack>			
+		</interceptors>	
+		<default-interceptor-ref name="StudentInterceptor_stack"></default-interceptor-ref>
+	  
+	  <global-results>
+			<result name="login" type="redirect">${pageContext.request.contextPath }/student/error2.jsp</result>
+			
+		</global-results>
+		
+		
+		<action name="querybyid" class="action.StudentAction" method="querybyid">
+			<result name="querybyid">${pageContext.request.contextPath }/student/main.jsp</result>
+		</action>
+		<action name="queryhydropower" class="action.StudentAction" method="queryhydropower">
+			<result name="queryhydropower">${pageContext.request.contextPath }/student/hydropower.jsp</result>
+		</action>
+		<action name="querypersonviolation" class="action.StudentAction" method="querypersonviolation">
+			<result name="querypersonviolation">${pageContext.request.contextPath }/student/personviolation.jsp</result>
+		</action>
+		<action name="querydormitoryviolation" class="action.StudentAction" method="querydormitoryviolation">
+			<result name="querydormitoryviolation">${pageContext.request.contextPath }/student/dormitoryviolation.jsp</result>
+		</action>
+		<action name="queryrepair" class="action.StudentAction" method="queryrepair">
+			<result name="queryrepair">${pageContext.request.contextPath }/student/queryrepair.jsp</result>
+		</action>
+		<action name="repair" class="action.StudentAction" method="addrepair">
+			<result name="repair">${pageContext.request.contextPath }/student/main.jsp</result>
+		</action>
+		<action name="logout" class="action.StudentAction" method="invalidate">
+			<result name="logout">${pageContext.request.contextPath }/student/index.jsp</result>
+		</action>
+	</package>
+	
+	<package name="admini" namespace="/" extends="struts-default">
+	
+	 
+	    
+	   
+	    
+	<!-- 查所有-->
+	   <action name="querydormitoryviolation2" class="action.AdminAction" method="querydormitoryviolation2">
+			<result name="querydormitoryviolation2">${pageContext.request.contextPath }/admini/showdorviolation.jsp</result>
+		</action>
+		 <action name="querypersonviolation2" class="action.AdminAction" method="querypersonviolation2">
+			<result name="querypersonviolation2">${pageContext.request.contextPath }/admini/showperviolation.jsp</result>
+		</action>
+		
+	<!-- 查单条-->	
+		
+	   <action name="dormitoryBynb" class="action.AdminAction" method="dormitoryBynb">
+			<result name="dormitoryBynb">${pageContext.request.contextPath }/admini/modidorviolation.jsp</result>
+	   </action>
+		<action name="personBynb" class="action.AdminAction" method="personBynb">
+			<result name="personBynb">${pageContext.request.contextPath }/admini/modiperviolation.jsp</result>
+		</action>
+		
+	<!-- 增加-->
+		
+		<action name="addpersonviolation" class="action.AdminAction" method="addpersonviolation">
+			<result name="addpersonviolation">${pageContext.request.contextPath }/admini/personviolation2.jsp</result>
+		 </action>
+		  <action name="adddormitoryviolation" class="action.AdminAction" method="adddormitoryviolation">
+			<result name="adddormitoryviolation">${pageContext.request.contextPath }/admini/dormitoryviolation2.jsp</result>
+		</action>
+		
+	<!-- 删除-->
+		
+		 <action name="deletedorviolation" class="action.AdminAction" method="deletedorviolation">
+			<result name="deletedorviolation">${pageContext.request.contextPath }/admini/dormitoryviolation2.jsp</result>
+		</action>
+		 <action name="deleteperviolation" class="action.AdminAction" method="deleteperviolation">
+			<result name="deleteperviolation">${pageContext.request.contextPath }/admini/personviolation2.jsp</result>
+		</action>
+		
+	<!-- 修改-->
+	    
+	     <action name="modipersonviolation" class="action.AdminAction" method="modipersonviolation">
+			<result name="modipersonviolation">${pageContext.request.contextPath }/admini/personviolation2.jsp</result>
+		</action>
+		 <action name="modidormitoryviolation" class="action.AdminAction" method="modidormitoryviolation">
+			<result name="modidormitoryviolation">${pageContext.request.contextPath }/admini/dormitoryviolation2.jsp</result>
+		</action>
+	
+	</package>
+
+</struts>
